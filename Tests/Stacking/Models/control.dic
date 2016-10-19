@@ -1,0 +1,67 @@
+// PID parameters
+// pid vlues and min, max output
+$p = 220
+$i = 0
+$imax = 1
+$d = 20
+$max = 100
+$zfactor = 1
+
+// error max to consider joints target reached
+$error_max_joints = 0.03
+$error_flex_joints = 0.1
+// Time limit to reach a target before randomizing (seconds)
+$time_limit = 5
+// Time during which we randomize the targets (seconds)
+$time_random = 1
+
+// captor sensibility for gripper
+$captors_sensibility = 0.0011
+// captor sensibility for gripper
+$captors_max = 0.006
+// step size for gripper
+$stepsize_gripper = 0.15
+$recedesize_gripper = 0.25
+$targsize_gripper = 0.0003
+$releasesize_gripper = 0.0011
+$convergence_error_gripper = 1
+$gripper_low_angle = 0.03
+
+// error max to consider IK target reached
+$error_max_ik = 0.001
+
+// maximum step size of improvement to stop IK algorithm
+$convergence_error_ik = 0.00001
+
+// number max of iterations for IK algo
+$iter_max_ik = 100
+
+// Simulation parameters (number of simu)
+$iter_simu = 1000
+
+// Simulation iteration to wait before start
+$wait_iter = 2000;
+
+// Amplitude of the reflex backward movement in rad
+$reflex_amp = 2;
+
+// How frequently we update
+$update_freq = 1;
+
+// To avoid shaking, we add a small offset to actual limit that joints can target to
+$limit_offset_joints = 0.01
+
+// Max offset for reflex on X nd Y
+$reflex_xyz = 0.1
+
+// Offset added for reflex on Z
+$reflex_z = 0.2
+
+// Grabbing offset
+$grabbing_offset = 0.10
+
+// Take height offset
+$takeheight_offset = 0.3
+
+// Get Back offset
+$getback_offset = 0

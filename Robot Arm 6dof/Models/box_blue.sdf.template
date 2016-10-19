@@ -1,0 +1,55 @@
+<sdf version ='1.5'>
+  <model name ='boxblue'>
+    <pose>0 0 0 0 0 0</pose>
+    <link name ='boxbluelink'>
+
+      <inertial>
+         <mass>$box_blue_mass</mass>
+         <inertia>
+           <ixx>&multiply(&multiply(&divide(1,12),$box_blue_mass),&add(&power($box_blue_size,2),&power($box_blue_size,2)))</ixx>
+           <ixy>0.0</ixy>
+           <ixz>0.0</ixz>
+           <iyy>&multiply(&multiply(&divide(1,12),$box_blue_mass),&add(&power($box_blue_size,2),&power($box_blue_size,2)))</iyy>
+           <iyz>0.0</iyz>
+           <izz>&multiply(&multiply(&divide(1,12),$box_blue_mass),&add(&power($box_blue_size,2),&power($box_blue_size,2)))</izz>
+         </inertia>
+       </inertial>
+       <pose>0 0 0 0 0 0</pose>
+
+      <collision name ='boxbluelink_collision'>
+        <geometry>
+          <box><size>$box_blue_size $box_blue_size $box_blue_size</size></box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>$arm_finger-touch_mu</mu>
+              <mu2>$arm_finger-touch_mu2</mu2>
+              <slip1>$touch_slip1</slip1>
+              <slip2>$touch_slip2</slip2>
+            </ode>
+          </friction>
+          <contact>
+            <ode>
+            <max_vel>$finger_max_vel</max_vel>
+            <min_depth>$arm_finger_mindepth</min_depth>
+            <soft_erp>$arm_finger_erp</soft_erp>
+            <soft_cfm>$arm_finger_cfm</soft_cfm>
+            </ode>
+          </contact>
+        </surface>
+      </collision>
+      <visual name ='boxbluelink_visual'>
+        <geometry>
+          <box><size>$box_blue_size $box_blue_size $box_blue_size</size></box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Blue</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

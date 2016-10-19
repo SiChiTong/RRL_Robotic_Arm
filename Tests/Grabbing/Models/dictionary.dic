@@ -1,0 +1,98 @@
+// ---------------------------------------------------------------------------------------------------------------------------------
+// GENERAL PROPERTIES
+// ---------------------------------------------------------------------------------------------------------------------------------
+$pi = 3.1415926
+
+// ---------------------------------------------------------------------------------------------------------------------------------
+// TABLE PROPERTIES
+// ---------------------------------------------------------------------------------------------------------------------------------
+$table_pose_x = 0.0
+$table_pose_y = 0.8
+$table_pose_z = 0.0
+$table_mass = 5
+
+// ---------------------------------------------------------------------------------------------------------------------------------
+// RED BOX PROPERTIES
+// ---------------------------------------------------------------------------------------------------------------------------------
+$box_red_pose_x = 0.7
+$box_red_pose_y = 0.1
+$box_red_pose_z = 1.04
+$box_red_size_x = 0.15
+$box_red_size_y = 0.15
+$box_red_size_z = 0.15
+$box_red_mass = 0.3
+
+// ---------------------------------------------------------------------------------------------------------------------------------
+// BLUE BOX PROPERTIES
+// ---------------------------------------------------------------------------------------------------------------------------------
+$box_blue_pose_x = -10.7
+$box_blue_pose_y = 0.9
+$box_blue_pose_z = 1.04
+$box_blue_size_x = 0.24
+$box_blue_size_y = 0.24
+$box_blue_size_z = 0.12
+$box_blue_mass = 0.3
+
+
+// ---------------------------------------------------------------------------------------------------------------------------------
+// ARM PROPERTIES
+// ---------------------------------------------------------------------------------------------------------------------------------
+// Mass factor
+$arm_mass_factor = 1
+// Disable gravity
+$gravity = 0
+// Activate damping for joints
+$joints_cfm_damping = 1
+$joints_implicit_spring = 1
+// Joints actual damping value
+$joints_damping = 80
+$touch_damping = 70
+// Min depth before collision
+$arm_finger_mindepth = 0.00001
+// Create smooth touch joints
+$arm_finger-touch_mu = 0.8
+$arm_finger-touch_mu2 = 0.8
+$touch_slip1 = 0.0
+$touch_slip2 = 0.0
+$arm_finger_erp = 0.8
+$arm_finger_cfm = 0.01
+$finger_max_vel = 0.1
+$arm_finger_touch_stiffness = 1000
+// Activate collisions
+$self_collide = 0
+// Rotary limit for joints in x or y
+$yrotalimit = 2.0
+$fingerhighlimit = 1.2
+$fingerlowlimit = 0.01
+// Radius of the tubes
+$arm_radius = 0.015
+// --> arm_base
+$arm_base_mass = 1
+$arm_base_length = 1.5
+// --> arm shoulder
+$arm_shoulder_length = 0.1
+$arm_shoulder_mass = 1
+// --> arm_upperarm
+$arm_upperarm_length = 0.5
+$arm_upperarm_mass = 1
+// --> arm_elbow
+$arm_elbow_length = 0.4
+$arm_elbow_mass = 1
+// --> arm_forearm
+$arm_forearm_length = 0.05
+$arm_forearm_mass = 1
+// --> arm_wrist
+$arm_wrist_length = 0.05
+$arm_wrist_mass = 1
+// -> arm_hand
+$arm_hand_mass = 1
+$arm_hand_height = 0.05
+$arm_hand_width = 0.2
+// -> arm_finger
+$arm_finger_pan_mass = 0.5
+$arm_finger_pan_length = 0.1
+$arm_finger_pan_angle = 30
+// -> arm_touch
+$arm_finger_touch_mass = 0.02
+$arm_finger_touch_radius = 0.01
+$arm_finger_touch_dist = 0.035

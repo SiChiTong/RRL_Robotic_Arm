@@ -1,0 +1,1147 @@
+<sdf version ='1.5'>
+  <model name="arm">
+    <!-- <static>true</static> xx-->
+    <link name="arm_base">
+      <gravity>$gravity</gravity>
+      <inertial>
+        <mass>$arm_base_mass</mass>
+        <inertia>
+          <ixx>&multiply(&multiply(&multiply(&divide(1,12),$arm_base_mass),&add(&multiply(3,&power($arm_radius,2)),&power($arm_base_length,2))),$arm_mass_factor)</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>&multiply(&multiply(&multiply(&divide(1,12),$arm_base_mass),&add(&multiply(3,&power($arm_radius,2)),&power($arm_base_length,2))),$arm_mass_factor)</iyy>
+          <iyz>0.0</iyz>
+          <izz>&multiply(&divide(&multiply($arm_base_mass,&power($arm_radius,2)),2),$arm_mass_factor)</izz>
+        </inertia>
+      </inertial>
+      <self_collide>$self_collide</self_collide>
+      <pose>0 0 &divide($arm_base_length,2) 0 0 0</pose>
+      <collision name="arm_base_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>$arm_radius</radius>
+            <length>$arm_base_length</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="arm_base_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>$arm_radius</radius>
+            <length>$arm_base_length</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Blue</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+
+    <link name="arm_shoulder">
+      <gravity>$gravity</gravity>
+      <inertial>
+        <mass>$arm_shoulder_mass</mass>
+        <inertia>
+          <ixx>&multiply(&multiply(&multiply(&divide(1,12),$arm_shoulder_mass),&add(&multiply(3,&power($arm_radius,2)),&power($arm_shoulder_length,2))),$arm_mass_factor)</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>&multiply(&multiply(&multiply(&divide(1,12),$arm_shoulder_mass),&add(&multiply(3,&power($arm_radius,2)),&power($arm_shoulder_length,2))),$arm_mass_factor)</iyy>
+          <iyz>0.0</iyz>
+          <izz>&multiply(&divide(&multiply($arm_shoulder_mass,&power($arm_radius,2)),2),$arm_mass_factor)</izz>
+        </inertia>
+      </inertial>
+      <self_collide>$self_collide</self_collide>
+      <pose>0 0 &add($arm_base_length,&divide($arm_shoulder_length,2)) 0 0 0</pose>
+      <collision name="arm_shoulder_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>$arm_radius</radius>
+            <length>$arm_shoulder_length</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="arm_shoulder_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>$arm_radius</radius>
+            <length>$arm_shoulder_length</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Yellow</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <link name="arm_upperarm">
+      <gravity>$gravity</gravity>
+      <inertial>
+        <mass>$arm_upperarm_mass</mass>
+        <inertia>
+          <ixx>&multiply(&multiply(&multiply(&divide(1,12),$arm_upperarm_mass),&add(&multiply(3,&power($arm_radius,2)),&power($arm_upperarm_length,2))),$arm_mass_factor)</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>&multiply(&multiply(&multiply(&divide(1,12),$arm_upperarm_mass),&add(&multiply(3,&power($arm_radius,2)),&power($arm_upperarm_length,2))),$arm_mass_factor)</iyy>
+          <iyz>0.0</iyz>
+          <izz>&multiply(&divide(&multiply($arm_upperarm_mass,&power($arm_radius,2)),2),$arm_mass_factor)</izz>
+        </inertia>
+      </inertial>
+      <self_collide>$self_collide</self_collide>
+      <pose>0 0 &add(&add($arm_base_length,$arm_shoulder_length),&divide($arm_upperarm_length,2)) 0 0 0</pose>
+      <collision name="arm_upperarm_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>$arm_radius</radius>
+            <length>$arm_upperarm_length</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="arm_upperarm_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>$arm_radius</radius>
+            <length>$arm_upperarm_length</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Red</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <link name="arm_elbow">
+      <gravity>$gravity</gravity>
+      <inertial>
+        <mass>$arm_elbow_mass</mass>
+        <inertia>
+          <ixx>&multiply(&multiply(&multiply(&divide(1,12),$arm_elbow_mass),&add(&multiply(3,&power($arm_radius,2)),&power($arm_elbow_length,2))),$arm_mass_factor)</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>&multiply(&multiply(&multiply(&divide(1,12),$arm_elbow_mass),&add(&multiply(3,&power($arm_radius,2)),&power($arm_elbow_length,2))),$arm_mass_factor)</iyy>
+          <iyz>0.0</iyz>
+          <izz>&multiply(&divide(&multiply($arm_elbow_mass,&power($arm_radius,2)),2),$arm_mass_factor)</izz>
+        </inertia>
+      </inertial>
+      <self_collide>$self_collide</self_collide>
+      <pose>0 0 &add(&add(&add($arm_base_length,$arm_shoulder_length),$arm_upperarm_length),&divide($arm_elbow_length,2)) 0 0 0</pose>
+      <collision name="arm_elbow_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>$arm_radius</radius>
+            <length>$arm_elbow_length</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="arm_elbow_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>$arm_radius</radius>
+            <length>$arm_elbow_length</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/White</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <link name="arm_forearm">
+      <gravity>$gravity</gravity>
+      <inertial>
+        <mass>$arm_forearm_mass</mass>
+        <inertia>
+          <ixx>&multiply(&multiply(&multiply(&divide(1,12),$arm_forearm_mass),&add(&multiply(3,&power($arm_radius,2)),&power($arm_forearm_length,2))),$arm_mass_factor)</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>&multiply(&multiply(&multiply(&divide(1,12),$arm_forearm_mass),&add(&multiply(3,&power($arm_radius,2)),&power($arm_forearm_length,2))),$arm_mass_factor)</iyy>
+          <iyz>0.0</iyz>
+          <izz>&multiply(&divide(&multiply($arm_forearm_mass,&power($arm_radius,2)),2),$arm_mass_factor)</izz>
+        </inertia>
+      </inertial>
+      <self_collide>$self_collide</self_collide>
+      <pose>0 0 &add(&add(&add(&add($arm_base_length,$arm_shoulder_length),$arm_upperarm_length),$arm_elbow_length),&divide($arm_forearm_length,2)) 0 0 0</pose>
+      <collision name="arm_forearm_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>$arm_radius</radius>
+            <length>$arm_forearm_length</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="arm_forearm_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>$arm_radius</radius>
+            <length>$arm_forearm_length</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Green</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <link name="arm_wrist">
+      <gravity>$gravity</gravity>
+      <inertial>
+        <mass>$arm_wrist_mass</mass>
+        <inertia>
+          <ixx>&multiply(&multiply(&multiply(&divide(1,12),$arm_wrist_mass),&add(&multiply(3,&power($arm_radius,2)),&power($arm_wrist_length,2))),$arm_mass_factor)</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>&multiply(&multiply(&multiply(&divide(1,12),$arm_wrist_mass),&add(&multiply(3,&power($arm_radius,2)),&power($arm_wrist_length,2))),$arm_mass_factor)</iyy>
+          <iyz>0.0</iyz>
+          <izz>&multiply(&divide(&multiply($arm_wrist_mass,&power($arm_radius,2)),2),$arm_mass_factor)</izz>
+        </inertia>
+      </inertial>
+      <self_collide>$self_collide</self_collide>
+      <pose>0 0 &add(&add(&add(&add(&add($arm_base_length,$arm_shoulder_length),$arm_upperarm_length),$arm_elbow_length),$arm_forearm_length),&divide($arm_wrist_length,2)) 0 0 0</pose>
+      <collision name="arm_wrist_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>$arm_radius</radius>
+            <length>$arm_wrist_length</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="arm_wrist_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>$arm_radius</radius>
+            <length>$arm_wrist_length</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Black</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+
+    <link name="arm_hand">
+      <gravity>$gravity</gravity>
+      <inertial>
+        <mass>$arm_hand_mass</mass>
+        <inertia>
+          <iyy>&multiply(&multiply(&multiply(&divide(1,12),$arm_hand_mass),&add(&power($arm_hand_height,2),&power($arm_hand_width,2))),$arm_mass_factor)</iyy>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <izz>&multiply(&multiply(&multiply(&divide(1,12),$arm_hand_mass),&add(&power($arm_hand_width,2),&power($arm_radius,2))),$arm_mass_factor)</izz>
+          <iyz>0.0</iyz>
+          <ixx>&multiply(&multiply(&multiply(&divide(1,12),$arm_hand_mass),&add(&power($arm_radius,2),&power($arm_hand_height,2))),$arm_mass_factor)</ixx>
+        </inertia>
+      </inertial>
+      <self_collide>$self_collide</self_collide>
+      <pose>0 0 &add(&add(&add(&add(&add(&add($arm_base_length,$arm_shoulder_length),$arm_upperarm_length),$arm_elbow_length),$arm_forearm_length),$arm_wrist_length),&divide($arm_hand_height,2)) 0 0 0</pose>
+      <collision name="arm_hand_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>$arm_hand_width &multiply($arm_radius,2) $arm_hand_height</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="arm_hand_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>$arm_hand_width $arm_radius $arm_hand_height</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Purple</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <link name="arm_right-finger-1">
+      <gravity>$gravity</gravity>
+      <inertial>
+        <mass>$arm_finger_pan_mass</mass>
+        <inertia>
+          <ixx>&multiply(&multiply(&multiply(&divide(1,12),$arm_finger_pan_mass),&add(&multiply(3,&power($arm_radius,2)),&power($arm_finger_pan_length,2))),$arm_mass_factor)</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>&multiply(&multiply(&multiply(&divide(1,12),$arm_finger_pan_mass),&add(&multiply(3,&power($arm_radius,2)),&power($arm_finger_pan_length,2))),$arm_mass_factor)</iyy>
+          <iyz>0.0</iyz>
+          <izz>&multiply(&divide(&multiply($arm_finger_pan_mass,&power($arm_radius,2)),2),$arm_mass_factor)</izz>
+        </inertia>
+      </inertial>
+      <self_collide>$self_collide</self_collide>
+      <pose>-&divide($arm_hand_width,2) 0 &add(&add(&add(&add(&add(&add(&add($arm_base_length,$arm_shoulder_length),$arm_upperarm_length),$arm_elbow_length),$arm_forearm_length),$arm_wrist_length),$arm_hand_height),&divide($arm_finger_pan_length,2)) 0 0 0</pose>
+      <collision name="arm_right-finger-1_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>$arm_radius</radius>
+            <length>$arm_finger_pan_length</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="arm_right-finger-1_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>$arm_radius</radius>
+            <length>$arm_finger_pan_length</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Red</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <link name="arm_right-finger-2">
+      <gravity>$gravity</gravity>
+      <inertial>
+        <mass>$arm_finger_pan_mass</mass>
+        <inertia>
+          <ixx>&multiply(&multiply(&multiply(&divide(1,12),$arm_finger_pan_mass),&add(&multiply(3,&power($arm_radius,2)),&power($arm_finger_pan_length,2))),$arm_mass_factor)</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>&multiply(&multiply(&multiply(&divide(1,12),$arm_finger_pan_mass),&add(&multiply(3,&power($arm_radius,2)),&power($arm_finger_pan_length,2))),$arm_mass_factor)</iyy>
+          <iyz>0.0</iyz>
+          <izz>&multiply(&divide(&multiply($arm_finger_pan_mass,&power($arm_radius,2)),2),$arm_mass_factor)</izz>
+        </inertia>
+
+      </inertial>
+      <self_collide>$self_collide</self_collide>
+      <pose>-&divide($arm_hand_width,2) 0 &add(&add(&add(&add(&add(&add(&add(&add($arm_base_length,$arm_shoulder_length),$arm_upperarm_length),$arm_elbow_length),$arm_forearm_length),$arm_wrist_length),$arm_hand_height),$arm_finger_pan_length),&divide($arm_finger_pan_length,2)) 0 0 0</pose>
+      <collision name="arm_right-finger-2_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>$arm_radius</radius>
+            <length>$arm_finger_pan_length</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="arm_right-finger-2_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>$arm_radius</radius>
+            <length>$arm_finger_pan_length</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <link name="arm_right-finger-touch-1">
+      <gravity>$gravity</gravity>
+      <inertial>
+        <mass>$arm_finger_touch_mass</mass>
+        <inertia>
+          <ixx>&multiply(&multiply(&multiply($arm_finger_touch_mass,&power($arm_finger_touch_radius,2)),0.4),$arm_mass_factor)</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>&multiply(&multiply(&multiply($arm_finger_touch_mass,&power($arm_finger_touch_radius,2)),0.4),$arm_mass_factor)</iyy>
+          <iyz>0.0</iyz>
+          <izz>&multiply(&multiply(&multiply($arm_finger_touch_mass,&power($arm_finger_touch_radius,2)),0.4),$arm_mass_factor)</izz>
+        </inertia>
+      </inertial>
+      <self_collide>$self_collide</self_collide>
+      <pose>-&substract(&divide($arm_hand_width,2),$arm_finger_touch_dist) $arm_radius &substract(&add(&add(&add(&add(&add(&add(&add($arm_base_length,$arm_shoulder_length),$arm_upperarm_length),$arm_elbow_length),$arm_forearm_length),$arm_wrist_length),$arm_hand_height),&multiply($arm_finger_pan_length,2)),$arm_radius) 0 0 0</pose>
+      <collision name="arm_right-finger-touch-1_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>$arm_finger_touch_radius</radius>
+          </sphere>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>$arm_finger-touch_mu</mu>
+              <mu2>$arm_finger-touch_mu2</mu2>
+              <slip1>$touch_slip1</slip1>
+              <slip2>$touch_slip2</slip2>
+            </ode>
+          </friction>
+          <contact>
+            <ode>
+              <max_vel>$finger_max_vel</max_vel>
+              <min_depth>$arm_finger_mindepth</min_depth>
+              <soft_erp>$arm_finger_erp</soft_erp>
+              <soft_cfm>$arm_finger_cfm</soft_cfm>
+            </ode>
+          </contact>
+        </surface>
+      </collision>
+
+      <visual name="arm_right-finger-touch-1_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>$arm_finger_touch_radius</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <link name="arm_right-finger-touch-2">
+      <gravity>$gravity</gravity>
+      <inertial>
+        <mass>$arm_finger_touch_mass</mass>
+        <inertia>
+          <ixx>&multiply(&multiply(&multiply($arm_finger_touch_mass,&power($arm_finger_touch_radius,2)),0.4),$arm_mass_factor)</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>&multiply(&multiply(&multiply($arm_finger_touch_mass,&power($arm_finger_touch_radius,2)),0.4),$arm_mass_factor)</iyy>
+          <iyz>0.0</iyz>
+          <izz>&multiply(&multiply(&multiply($arm_finger_touch_mass,&power($arm_finger_touch_radius,2)),0.4),$arm_mass_factor)</izz>
+        </inertia>
+      </inertial>
+      <self_collide>$self_collide</self_collide>
+      <pose>-&substract(&divide($arm_hand_width,2),$arm_finger_touch_dist) 0 &add(&add(&add(&add(&add(&add(&add(&add($arm_base_length,$arm_shoulder_length),$arm_upperarm_length),$arm_elbow_length),$arm_forearm_length),$arm_wrist_length),$arm_hand_height),&multiply($arm_finger_pan_length,2)),$arm_radius) 0 0 0</pose>
+      <collision name="arm_right-finger-touch-2_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>$arm_finger_touch_radius</radius>
+          </sphere>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>$arm_finger-touch_mu</mu>
+              <mu2>$arm_finger-touch_mu2</mu2>
+              <slip1>$touch_slip1</slip1>
+              <slip2>$touch_slip2</slip2>
+            </ode>
+          </friction>
+          <contact>
+            <ode>
+              <max_vel>$finger_max_vel</max_vel>
+              <min_depth>$arm_finger_mindepth</min_depth>
+              <soft_erp>$arm_finger_erp</soft_erp>
+              <soft_cfm>$arm_finger_cfm</soft_cfm>
+            </ode>
+          </contact>
+        </surface>
+      </collision>
+
+      <visual name="arm_right-finger-touch-2_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>$arm_finger_touch_radius</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <link name="arm_right-finger-touch-3">
+      <gravity>$gravity</gravity>
+      <inertial>
+        <mass>$arm_finger_touch_mass</mass>
+        <inertia>
+          <ixx>&multiply(&multiply(&multiply($arm_finger_touch_mass,&power($arm_finger_touch_radius,2)),0.4),$arm_mass_factor)</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>&multiply(&multiply(&multiply($arm_finger_touch_mass,&power($arm_finger_touch_radius,2)),0.4),$arm_mass_factor)</iyy>
+          <iyz>0.0</iyz>
+          <izz>&multiply(&multiply(&multiply($arm_finger_touch_mass,&power($arm_finger_touch_radius,2)),0.4),$arm_mass_factor)</izz>
+        </inertia>
+      </inertial>
+      <self_collide>$self_collide</self_collide>
+      <pose>-&substract(&divide($arm_hand_width,2),$arm_finger_touch_dist) -$arm_radius &substract(&add(&add(&add(&add(&add(&add(&add($arm_base_length,$arm_shoulder_length),$arm_upperarm_length),$arm_elbow_length),$arm_forearm_length),$arm_wrist_length),$arm_hand_height),&multiply($arm_finger_pan_length,2)),$arm_radius) 0 0 0</pose>
+      <collision name="arm_right-finger-touch-3_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>$arm_finger_touch_radius</radius>
+          </sphere>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>$arm_finger-touch_mu</mu>
+              <mu2>$arm_finger-touch_mu2</mu2>
+              <slip1>$touch_slip1</slip1>
+              <slip2>$touch_slip2</slip2>
+            </ode>
+          </friction>
+          <contact>
+            <ode>
+              <max_vel>$finger_max_vel</max_vel>
+              <min_depth>$arm_finger_mindepth</min_depth>
+              <soft_erp>$arm_finger_erp</soft_erp>
+              <soft_cfm>$arm_finger_cfm</soft_cfm>
+            </ode>
+          </contact>
+        </surface>
+      </collision>
+
+      <visual name="arm_right-finger-touch-3_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>$arm_finger_touch_radius</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <link name="arm_left-finger-1">
+      <gravity>$gravity</gravity>
+      <inertial>
+        <mass>$arm_finger_pan_mass</mass>
+        <inertia>
+          <ixx>&multiply(&multiply(&multiply(&divide(1,12),$arm_finger_pan_mass),&add(&multiply(3,&power($arm_radius,2)),&power($arm_finger_pan_length,2))),$arm_mass_factor)</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>&multiply(&multiply(&multiply(&divide(1,12),$arm_finger_pan_mass),&add(&multiply(3,&power($arm_radius,2)),&power($arm_finger_pan_length,2))),$arm_mass_factor)</iyy>
+          <iyz>0.0</iyz>
+          <izz>&multiply(&divide(&multiply($arm_finger_pan_mass,&power($arm_radius,2)),2),$arm_mass_factor)</izz>
+        </inertia>
+
+      </inertial>
+      <self_collide>$self_collide</self_collide>
+      <pose>&divide($arm_hand_width,2) 0 &add(&add(&add(&add(&add(&add(&add($arm_base_length,$arm_shoulder_length),$arm_upperarm_length),$arm_elbow_length),$arm_forearm_length),$arm_wrist_length),$arm_hand_height),&divide($arm_finger_pan_length,2)) 0 0 0</pose>
+      <collision name="arm_left-finger-1_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>$arm_radius</radius>
+            <length>$arm_finger_pan_length</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="arm_left-finger-1_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>$arm_radius</radius>
+            <length>$arm_finger_pan_length</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Blue</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <link name="arm_left-finger-2">
+      <gravity>$gravity</gravity>
+      <inertial>
+        <mass>$arm_finger_pan_mass</mass>
+        <inertia>
+          <ixx>&multiply(&multiply(&multiply(&divide(1,12),$arm_finger_pan_mass),&add(&multiply(3,&power($arm_radius,2)),&power($arm_finger_pan_length,2))),$arm_mass_factor)</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>&multiply(&multiply(&multiply(&divide(1,12),$arm_finger_pan_mass),&add(&multiply(3,&power($arm_radius,2)),&power($arm_finger_pan_length,2))),$arm_mass_factor)</iyy>
+          <iyz>0.0</iyz>
+          <izz>&multiply(&divide(&multiply($arm_finger_pan_mass,&power($arm_radius,2)),2),$arm_mass_factor)</izz>
+        </inertia>
+
+      </inertial>
+      <self_collide>$self_collide</self_collide>
+      <pose>&divide($arm_hand_width,2) 0 &add(&add(&add(&add(&add(&add(&add(&add($arm_base_length,$arm_shoulder_length),$arm_upperarm_length),$arm_elbow_length),$arm_forearm_length),$arm_wrist_length),$arm_hand_height),$arm_finger_pan_length),&divide($arm_finger_pan_length,2)) 0 0 0</pose>
+      <collision name="arm_left-finger-2_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>$arm_radius</radius>
+            <length>$arm_finger_pan_length</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="arm_left-finger-2_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>$arm_radius</radius>
+            <length>$arm_finger_pan_length</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <link name="arm_left-finger-touch-1">
+      <gravity>$gravity</gravity>
+      <inertial>
+        <mass>$arm_finger_touch_mass</mass>
+        <inertia>
+          <ixx>&multiply(&multiply(&multiply($arm_finger_touch_mass,&power($arm_finger_touch_radius,2)),0.4),$arm_mass_factor)</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>&multiply(&multiply(&multiply($arm_finger_touch_mass,&power($arm_finger_touch_radius,2)),0.4),$arm_mass_factor)</iyy>
+          <iyz>0.0</iyz>
+          <izz>&multiply(&multiply(&multiply($arm_finger_touch_mass,&power($arm_finger_touch_radius,2)),0.4),$arm_mass_factor)</izz>
+        </inertia>
+      </inertial>
+      <self_collide>$self_collide</self_collide>
+      <pose>&substract(&divide($arm_hand_width,2),$arm_finger_touch_dist) $arm_radius &substract(&add(&add(&add(&add(&add(&add(&add($arm_base_length,$arm_shoulder_length),$arm_upperarm_length),$arm_elbow_length),$arm_forearm_length),$arm_wrist_length),$arm_hand_height),&multiply($arm_finger_pan_length,2)),$arm_radius) 0 0 0</pose>
+      <collision name="arm_left-finger-touch-1_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>$arm_finger_touch_radius</radius>
+          </sphere>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>$arm_finger-touch_mu</mu>
+              <mu2>$arm_finger-touch_mu2</mu2>
+              <slip1>$touch_slip1</slip1>
+              <slip2>$touch_slip2</slip2>
+            </ode>
+          </friction>
+          <contact>
+            <ode>
+              <max_vel>$finger_max_vel</max_vel>
+              <min_depth>$arm_finger_mindepth</min_depth>
+              <soft_erp>$arm_finger_erp</soft_erp>
+              <soft_cfm>$arm_finger_cfm</soft_cfm>
+            </ode>
+          </contact>
+        </surface>
+      </collision>
+
+      <visual name="arm_left-finger-touch-1_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>$arm_finger_touch_radius</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <link name="arm_left-finger-touch-2">
+      <gravity>$gravity</gravity>
+      <inertial>
+        <mass>$arm_finger_touch_mass</mass>
+        <inertia>
+          <ixx>&multiply(&multiply(&multiply($arm_finger_touch_mass,&power($arm_finger_touch_radius,2)),0.4),$arm_mass_factor)</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>&multiply(&multiply(&multiply($arm_finger_touch_mass,&power($arm_finger_touch_radius,2)),0.4),$arm_mass_factor)</iyy>
+          <iyz>0.0</iyz>
+          <izz>&multiply(&multiply(&multiply($arm_finger_touch_mass,&power($arm_finger_touch_radius,2)),0.4),$arm_mass_factor)</izz>
+        </inertia>
+      </inertial>
+      <self_collide>$self_collide</self_collide>
+      <pose>&substract(&divide($arm_hand_width,2),$arm_finger_touch_dist) 0  &add(&add(&add(&add(&add(&add(&add(&add($arm_base_length,$arm_shoulder_length),$arm_upperarm_length),$arm_elbow_length),$arm_forearm_length),$arm_wrist_length),$arm_hand_height),&multiply($arm_finger_pan_length,2)),$arm_radius) 0 0 0</pose>
+      <collision name="arm_left-finger-touch-2_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>$arm_finger_touch_radius</radius>
+          </sphere>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>$arm_finger-touch_mu</mu>
+              <mu2>$arm_finger-touch_mu2</mu2>
+              <slip1>$touch_slip1</slip1>
+              <slip2>$touch_slip2</slip2>
+            </ode>
+          </friction>
+          <contact>
+            <ode>
+              <max_vel>$finger_max_vel</max_vel>
+              <min_depth>$arm_finger_mindepth</min_depth>
+              <soft_erp>$arm_finger_erp</soft_erp>
+              <soft_cfm>$arm_finger_cfm</soft_cfm>
+            </ode>
+          </contact>
+        </surface>
+      </collision>
+
+      <visual name="arm_left-finger-touch-2_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>$arm_finger_touch_radius</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <link name="arm_left-finger-touch-3">
+      <gravity>$gravity</gravity>
+      <inertial>
+        <mass>$arm_finger_touch_mass</mass>
+        <inertia>
+          <ixx>&multiply(&multiply(&multiply($arm_finger_touch_mass,&power($arm_finger_touch_radius,2)),0.4),$arm_mass_factor)</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>&multiply(&multiply(&multiply($arm_finger_touch_mass,&power($arm_finger_touch_radius,2)),0.4),$arm_mass_factor)</iyy>
+          <iyz>0.0</iyz>
+          <izz>&multiply(&multiply(&multiply($arm_finger_touch_mass,&power($arm_finger_touch_radius,2)),0.4),$arm_mass_factor)</izz>
+        </inertia>
+      </inertial>
+      <self_collide>$self_collide</self_collide>
+      <pose>&substract(&divide($arm_hand_width,2),$arm_finger_touch_dist) -$arm_radius  &substract(&add(&add(&add(&add(&add(&add(&add($arm_base_length,$arm_shoulder_length),$arm_upperarm_length),$arm_elbow_length),$arm_forearm_length),$arm_wrist_length),$arm_hand_height),&multiply($arm_finger_pan_length,2)),$arm_radius) 0 0 0</pose>
+      <collision name="arm_left-finger-touch-3_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>$arm_finger_touch_radius</radius>
+          </sphere>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>$arm_finger-touch_mu</mu>
+              <mu2>$arm_finger-touch_mu2</mu2>
+              <slip1>$touch_slip1</slip1>
+              <slip2>$touch_slip2</slip2>
+            </ode>
+          </friction>
+          <contact>
+            <ode>
+              <max_vel>$finger_max_vel</max_vel>
+              <min_depth>$arm_finger_mindepth</min_depth>
+              <soft_erp>$arm_finger_erp</soft_erp>
+              <soft_cfm>$arm_finger_cfm</soft_cfm>
+            </ode>
+          </contact>
+        </surface>
+      </collision>
+
+      <visual name="arm_left-finger-touch-3_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>$arm_finger_touch_radius</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <joint type="revolute" name="shoulder_#joint">
+      <pose>0 0 -&divide($arm_shoulder_length,2) 0 0 0</pose>
+      <parent>arm_base</parent>
+      <child>arm_shoulder</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <dynamics>
+          <damping>$joints_damping</damping>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.2</erp>
+          </limit>
+          <implicit_spring_damper>$joints_implicit_spring</implicit_spring_damper>
+        </ode>
+      </physics>
+    </joint>
+
+    <joint type="revolute" name="upperarm_#joint">
+      <pose>0 0 -&divide($arm_upperarm_length,2) 0 0 0</pose>
+      <parent>arm_shoulder</parent>
+      <child>arm_upperarm</child>
+      <axis>
+        <limit>
+          <lower>-$yrotalimit</lower>
+          <upper>$yrotalimit</upper>
+        </limit>
+        <xyz>0 1 0</xyz>
+        <dynamics>
+          <damping>$joints_damping</damping>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.2</erp>
+          </limit>
+          <implicit_spring_damper>$joints_implicit_spring</implicit_spring_damper>
+        </ode>
+      </physics>
+    </joint>
+
+    <joint type="revolute" name="elbow_#joint">
+      <pose>0 0 -&divide($arm_elbow_length,2) 0 0 0</pose>
+      <parent>arm_upperarm</parent>
+      <child>arm_elbow</child>
+      <axis>
+        <limit>
+          <lower>-$yrotalimit</lower>
+          <upper>$yrotalimit</upper>
+        </limit>
+        <xyz>0 1 0</xyz>
+        <dynamics>
+          <damping>$joints_damping</damping>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.2</erp>
+          </limit>
+          <implicit_spring_damper>$joints_implicit_spring</implicit_spring_damper>
+        </ode>
+      </physics>
+    </joint>
+
+    <joint type="revolute" name="forearm_#joint">
+      <pose>0 0 -&divide($arm_forearm_length,2) 0 0 0</pose>
+      <parent>arm_elbow</parent>
+      <child>arm_forearm</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <dynamics>
+          <damping>$joints_damping</damping>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.2</erp>
+          </limit>
+          <implicit_spring_damper>$joints_implicit_spring</implicit_spring_damper>
+        </ode>
+      </physics>
+    </joint>
+
+    <joint type="revolute" name="wrist_#joint">
+      <pose>0 0 -&divide($arm_wrist_length,2) 0 0 0</pose>
+      <parent>arm_forearm</parent>
+      <child>arm_wrist</child>
+      <axis>
+        <limit>
+          <lower>-$yrotalimit</lower>
+          <upper>$yrotalimit</upper>
+        </limit>
+        <xyz>0 1 0</xyz>
+        <dynamics>
+          <damping>$joints_damping</damping>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.2</erp>
+          </limit>
+          <implicit_spring_damper>$joints_implicit_spring</implicit_spring_damper>
+        </ode>
+      </physics>
+    </joint>
+
+    <joint type="revolute" name="hand_#joint">
+      <pose>0 0 -&divide($arm_hand_height,2) 0 0 0</pose>
+      <parent>arm_wrist</parent>
+      <child>arm_hand</child>
+      <axis>
+      <xyz>0 0 1</xyz>
+        <dynamics>
+          <damping>$joints_damping</damping>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.2</erp>
+          </limit>
+          <implicit_spring_damper>$joints_implicit_spring</implicit_spring_damper>
+        </ode>
+      </physics>
+    </joint>
+
+    <joint type="revolute" name="right#finger_#joint">
+      <pose>0 0 -&divide($arm_finger_pan_length,2) 0 0 0</pose>
+      <parent>arm_hand</parent>
+      <child>arm_right-finger-1</child>
+      <axis>
+        <limit>
+          <lower>-$fingerhighlimit</lower>
+          <upper>$fingerlowlimit</upper>
+        </limit>
+        <xyz>0 1 0</xyz>
+        <dynamics>
+          <damping>$joints_damping</damping>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.2</erp>
+          </limit>
+          <implicit_spring_damper>$joints_implicit_spring</implicit_spring_damper>
+        </ode>
+      </physics>
+    </joint>
+
+    <joint type="revolute" name="left#finger_#joint">
+      <pose>0 0 -&divide($arm_finger_pan_length,2) 0 0 0</pose>
+      <parent>arm_hand</parent>
+      <child>arm_left-finger-1</child>
+      <axis>
+        <limit>
+          <lower>-$fingerlowlimit</lower>
+          <upper>$fingerhighlimit</upper>
+        </limit>
+        <xyz>0 1 0</xyz>
+        <dynamics>
+          <damping>$joints_damping</damping>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.2</erp>
+          </limit>
+          <implicit_spring_damper>$joints_implicit_spring</implicit_spring_damper>
+        </ode>
+      </physics>
+    </joint>
+
+    <joint type="revolute" name="leftfinger_pan2_joint">
+      <pose>0 0 -&divide($arm_finger_pan_length,2) 0 0 0</pose>
+      <parent>arm_left-finger-1</parent>
+      <child>arm_left-finger-2</child>
+      <axis>
+        <limit>
+          <lower>-&grad($arm_finger_pan_angle,0)</lower>
+          <upper>-&grad($arm_finger_pan_angle,0)</upper>
+        </limit>
+        <xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+
+    <joint type="revolute" name="rightfinger_pan2_joint">
+      <pose>0 0 -&divide($arm_finger_pan_length,2) 0 0 0</pose>
+      <parent>arm_right-finger-1</parent>
+      <child>arm_right-finger-2</child>
+      <axis>
+        <limit>
+          <lower>&grad($arm_finger_pan_angle,0)</lower>
+          <upper>&grad($arm_finger_pan_angle,0)</upper>
+        </limit>
+        <xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+
+    <joint type="prismatic" name="rightfinger_#touch_1_joint">
+      <pose>0 0 0 0 0 0</pose>
+      <parent>arm_right-finger-2</parent>
+      <child>arm_right-finger-touch-1</child>
+      <axis>
+        <xyz>1.0 0.0 0.0</xyz>
+        <dynamics>
+          <damping>$touch_damping</damping>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>$arm_finger_touch_stiffness</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>$joints_implicit_spring</implicit_spring_damper>
+        </ode>
+      </physics>
+    </joint>
+
+    <joint type="prismatic" name="rightfinger_#touch_2_joint">
+      <pose>0 0 0 0 0 0</pose>
+      <parent>arm_right-finger-2</parent>
+      <child>arm_right-finger-touch-2</child>
+      <axis>
+        <xyz>1.0 0.0 0.0</xyz>
+        <dynamics>
+          <damping>$touch_damping</damping>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>$arm_finger_touch_stiffness</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>$joints_implicit_spring</implicit_spring_damper>
+        </ode>
+      </physics>
+    </joint>
+
+    <joint type="prismatic" name="rightfinger_#touch_3_joint">
+      <pose>0 0 0 0 0 0</pose>
+      <parent>arm_right-finger-2</parent>
+      <child>arm_right-finger-touch-3</child>
+      <axis>
+        <xyz>1.0 0.0 0.0</xyz>
+        <dynamics>
+          <damping>$touch_damping</damping>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>$arm_finger_touch_stiffness</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>$joints_implicit_spring</implicit_spring_damper>
+        </ode>
+      </physics>
+    </joint>
+
+    <joint type="prismatic" name="leftfinger_#touch_1_joint">
+      <pose>0 0 0 0 0 0</pose>
+      <parent>arm_left-finger-2</parent>
+      <child>arm_left-finger-touch-1</child>
+      <axis>
+        <xyz>1.0 0.0 0.0</xyz>
+        <dynamics>
+          <damping>$touch_damping</damping>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>$arm_finger_touch_stiffness</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>$joints_implicit_spring</implicit_spring_damper>
+        </ode>
+      </physics>
+    </joint>
+
+    <joint type="prismatic" name="leftfinger_#touch_2_joint">
+      <pose>0 0 0 0 0 0</pose>
+      <parent>arm_left-finger-2</parent>
+      <child>arm_left-finger-touch-2</child>
+      <axis>
+        <xyz>1.0 0.0 0.0</xyz>
+        <dynamics>
+          <damping>$touch_damping</damping>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>$arm_finger_touch_stiffness</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>$joints_implicit_spring</implicit_spring_damper>
+        </ode>
+      </physics>
+    </joint>
+
+    <joint type="prismatic" name="leftfinger_#touch_3_joint">
+      <pose>0 0 0 0 0 0</pose>
+      <parent>arm_left-finger-2</parent>
+      <child>arm_left-finger-touch-3</child>
+      <axis>
+        <xyz>1.0 0.0 0.0</xyz>
+        <dynamics>
+          <damping>$touch_damping</damping>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>$arm_finger_touch_stiffness</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>$joints_implicit_spring</implicit_spring_damper>
+        </ode>
+      </physics>
+    </joint>
+
+    <joint type="prismatic" name="worldfix_joint">
+      <pose>0 0 0 0 0 0</pose>
+      <parent>world</parent>
+      <child>arm_base</child>
+      <axis>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+        </limit>
+        <xyz>1.0 0.0 0.0</xyz>
+      </axis>
+    </joint>
+  </model>
+</sdf>

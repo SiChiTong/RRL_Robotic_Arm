@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<sdf version="1.5">
+  <world name="default">
+  <physics type="ode">
+    <real_time_update_rate>0.0</real_time_update_rate>
+    <max_step_size>0.001000</max_step_size>
+    <max_contacts>2</max_contacts>
+    <ode>
+      <solver>
+        <type>quick</type>
+        <iters>100</iters>
+        <!-- <sor>1.4</sor>  -->
+      </solver>
+        <constraints>
+          <!--<cfm>0.01</cfm>
+          <erp>0.8</erp>
+          <contact_max_correcting_vel>1</contact_max_correcting_vel>-->
+          <contact_surface_layer>0.001</contact_surface_layer>
+        </constraints>
+      </ode>
+    </physics>
+
+    <!-- Ground Plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+  <plugin name="armworld_plugin" filename="./plugins/world_control/build/libarmworld_plugin.so"/>
+  </world>
+</sdf>
